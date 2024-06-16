@@ -1,11 +1,20 @@
+import {useState} from "react";
+
 const Button = (props) => {
     console.log(props)
 
     const { text, color, children } = props
-    
-  return (
+
+    let onClickButton = (e) => {
+        console.log(e)
+        console.log(text)
+    };
+
+    return (
     <>
-      <button style={{ color }}>
+      <button
+          onClick={onClickButton}
+          style={{ color }}>
         {text} - {color.toUpperCase()}
           {children}
       </button>
