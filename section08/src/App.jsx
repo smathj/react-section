@@ -13,18 +13,21 @@ const mockData = [
         id: 0,
         isDone: false,
         content: "React 공부하기",
+        // content: "React 공부하기",
         date: new Date().getTime(), // 타임스탬프
     },
     {
         id: 1,
         isDone: false,
         content: "빨래하기",
+        // content: "헬스 등",
         date: new Date().getTime(), // 타임스탬프
     },
     {
         id: 2,
         isDone: false,
         content: "노래 연습하기",
+        // content: "삼겹살 먹기",
         date: new Date().getTime(), // 타임스탬프
     },
 ];
@@ -44,12 +47,26 @@ function App() {
         setTodos([newTodo, ...todos])
     }
 
+    const onUpdate = (targetId) => {
+        setTodos(todos.map((todo) => todo.id === targetId
+                ? {...todo, isDone: !todo.isDone,}
+                : todo
+            )
+        )
+    }
+
+    const onDelete = (targetId) => {
+        setTodos(todos.filter((todo) => {
+            return todo.id !== targetId
+        }))
+    }
+
 
     return (
         <div className={'App'}>
             <Header/>
             <Editor onCreate={onCreate}/>
-            <List todos={todos}/>
+            <List todos={todos} onUpdate={onUpdate} onDelete={onDelete}/>
         </div>
     )
 }
