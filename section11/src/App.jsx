@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useRef, useState } from 'react'
+import { createContext, useCallback, useContext, useReducer, useRef, useState } from 'react'
 import './App.css'
 import './Editor.css'
 import './List.css'
@@ -46,6 +46,8 @@ function reducer(todos, action) {
   }
 }
 
+export const TodoContext = createContext()
+
 function App(callback, deps) {
 
   const [todos, dispatch] = useReducer(reducer, mockData)
@@ -85,8 +87,15 @@ function App(callback, deps) {
     <div className={'App'}>
 
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{
+        todos,
+        onCreate,
+        onUpdate,
+        onDelete,
+      }}>
+        <Editor />
+        <List />
+      </TodoContext.Provider>
 
     </div>
   )
