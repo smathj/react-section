@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useReducer, useRef, useState } from 'react'
+import { createContext, useCallback, useContext, useMemo, useReducer, useRef, useState } from 'react'
 import './App.css'
 import './Editor.css'
 import './List.css'
@@ -46,14 +46,15 @@ function reducer(todos, action) {
   }
 }
 
-export const TodoContext = createContext()
+export const TodoStateContext = createContext()
+export const TodoDispatchContext = createContext()
 
 function App(callback, deps) {
 
   const [todos, dispatch] = useReducer(reducer, mockData)
   const idRef = useRef(3)
 
-
+  // App 컴포넌트가 랜더링 될떄마다 생성됨
   const onCreate = useCallback((content) => {
 
     dispatch({
@@ -67,6 +68,7 @@ function App(callback, deps) {
     })
   }, [])
 
+  // App 컴포넌트가 랜더링 될떄마다 생성됨
   const onUpdate = useCallback((targetId) => {
     dispatch({
       type: 'UPDATE',
@@ -74,7 +76,7 @@ function App(callback, deps) {
     })
   }, [])
 
-
+  // App 컴포넌트가 랜더링 될떄마다 생성됨
   const onDelete = useCallback((targetId) => {
     dispatch({
       type: 'DELETE',
@@ -82,20 +84,26 @@ function App(callback, deps) {
     })
   }, [])
 
+  //! App 컴포넌트가 랜더링 될떄마다 생성되는걸 캐싱
+  //! 세 함수를 다시는 생성 하지 않도록 함
+  const memoizedDispatch = useMemo(() => {
+    return {
+      onCreate,
+      onUpdate,
+      onDelete,
+    }
+  }, [])  // 마운트 이후로 변하지않음
 
   return (
     <div className={'App'}>
 
       <Header />
-      <TodoContext.Provider value={{
-        todos,
-        onCreate,
-        onUpdate,
-        onDelete,
-      }}>
-        <Editor />
-        <List />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={memoizedDispatch}>
+          <Editor />
+          <List />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
 
     </div>
   )

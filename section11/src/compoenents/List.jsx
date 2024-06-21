@@ -1,9 +1,11 @@
 import { useContext, useMemo, useState } from 'react'
-import { TodoContext } from '../App.jsx'
+import { TodoStateContext } from '../App.jsx'
 import TodoItem from './TodoItem.jsx'
 
 const List = () => {
-  const { todos, onUpdate, onDelete } = useContext(TodoContext)
+
+  // 이때는 객체로 안넘겼기 때문에 바로 받는다
+  const todos = useContext(TodoStateContext)
 
 
   const [search, setSearch] = useState('')

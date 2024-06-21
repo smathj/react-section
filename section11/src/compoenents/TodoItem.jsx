@@ -1,9 +1,9 @@
 import { memo, useContext } from 'react'
-import { TodoContext } from '../App.jsx'
+import { TodoDispatchContext } from '../App.jsx'
 
 const TodoItem = ({ id, isDone, content, date }) => {
 
-  const { onUpdate, onDelete } = useContext(TodoContext)
+  const { onUpdate, onDelete } = useContext(TodoDispatchContext)
 
   const onChangeCheckbox = () => {
     onUpdate(id)
@@ -39,4 +39,5 @@ const TodoItem = ({ id, isDone, content, date }) => {
 //   return true
 // })
 
+// props 가 변하지않으면 캐싱으로 사용
 export default memo(TodoItem)
