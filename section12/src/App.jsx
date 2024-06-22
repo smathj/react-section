@@ -14,15 +14,21 @@ import { createContext, useReducer, useRef } from 'react'
 const mockData = [
   {
     id: 1,
-    createDate: new Date().getTime(),
+    createDate: new Date('2024-06-23').getTime(),
     emotionId: 1,
     content: '1번 일기 내용',
   },
   {
     id: 2,
-    createDate: new Date().getTime(),
+    createDate: new Date('2024-06-22').getTime(),
     emotionId: 2,
     content: '2번 일기 내용',
+  },
+  {
+    id: 3,
+    createDate: new Date('2024-05-05').getTime(),
+    emotionId: 3,
+    content: '3번 일기 내용',
   },
 ]
 
@@ -49,8 +55,8 @@ function reducer(state, action) {
 }
 
 
-const DiaryStateContext = createContext()
-const DiaryDispatchContext = createContext()
+export const DiaryStateContext = createContext()
+export const DiaryDispatchContext = createContext()
 
 
 function App() {
@@ -118,33 +124,3 @@ function App() {
 }
 
 export default App
-
-/*
-
-  // CSR 방식 이동
-  const nav = useNavigate()
-
-  const onClickButton = () => {
-    nav('/')
-  }
-
-
-
-<Header title={'Header'}
-        leftChild={<Button text={'Left'} />}
-        rightChild={<Button text={'Right'} />}
-/>
-
-<Button text={'짖어'}
-        onClick={() => console.log('기본')}
-        type={'DEFAULT'}
-/>
-<Button text={'긍정적'}
-        onClick={() => console.log('긍정적')}
-        type={'POSITIVE'}
-/>
-<Button text={'부정적'}
-        onClick={() => console.log('부정정')}
-        type={'NEGATIVE'}
-/>
-*/
