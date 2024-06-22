@@ -3,7 +3,7 @@ import { getEmotionImage } from '../utils/get-emotion-image.js'
 import Button from './Button.jsx'
 import { useNavigate } from 'react-router-dom'
 
-const DairyItem = ({ id, content, createDate, emotionId }) => {
+const DairyItem = ({ id, content, createdDate, emotionId }) => {
 
   const nav = useNavigate()
 
@@ -18,7 +18,7 @@ const DairyItem = ({ id, content, createDate, emotionId }) => {
 
       <div className={'info_section'}>
         <div className={'created_date'}>
-          {new Date(createDate).toLocaleDateString()}
+          {new Date(createdDate).toLocaleDateString()}
         </div>
         <div className={'content'}>
           {content}
@@ -26,7 +26,9 @@ const DairyItem = ({ id, content, createDate, emotionId }) => {
       </div>
 
       <div className={'button_section'}>
-        <Button text={'수정하기'} />
+        <Button
+          onClick={() => nav(`/edit/${id}`)}
+          text={'수정하기'} />
       </div>
     </div>
   )

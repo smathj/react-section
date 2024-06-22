@@ -1,7 +1,7 @@
 import './Editor.css'
 import EmotionItem from './EmotionItem.jsx'
 import Button from './Button.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -47,7 +47,7 @@ const getStringedDate = (targetDate) => {
 /**
  * Editor
  */
-const Editor = ({ onSubmit }) => {
+const Editor = ({ onSubmit, initData }) => {
 
   const [input, setInput] = useState({
     createdDate: new Date(),
@@ -57,6 +57,15 @@ const Editor = ({ onSubmit }) => {
 
   const nav = useNavigate()
 
+  useEffect(() => {
+    if (initData) {
+      console.log(initData)
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      })
+    }
+  }, [initData])
   const onChangeInput = (e) => {
 
     let name = e.target.name

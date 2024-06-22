@@ -20,10 +20,10 @@ const DiaryList = ({ data }) => {
     return data.toSorted((a, b) => {
       // 오름 차순
       if (sortType === 'oldest') {
-        return Number(a.createDate) - Number(b.createDate)
+        return Number(a.createdDate) - Number(b.createdDate)
         // 내림 차순
       } else {
-        return Number(b.createDate) - Number(a.createDate)
+        return Number(b.createdDate) - Number(a.createdDate)
       }
     })
   }

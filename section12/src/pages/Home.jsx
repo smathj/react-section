@@ -16,7 +16,7 @@ const getMonthlyData = (pivotDate, data) => {
   // 해당 월의 마지막일 : 월을 1늘리고 일자를 0으로해서 말일 => 타임 스탬프
   const endTime = new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1, 0, 23, 59, 59).getTime()
 
-  return data.filter((item) => beginTime <= item.createDate && item.createDate <= endTime)
+  return data.filter((item) => beginTime <= item.createdDate && item.createdDate <= endTime)
 }
 
 const Home = () => {

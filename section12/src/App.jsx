@@ -14,19 +14,19 @@ import { createContext, useReducer, useRef } from 'react'
 const mockData = [
   {
     id: 1,
-    createDate: new Date('2024-06-23').getTime(),
+    createdDate: new Date('2024-06-23').getTime(),
     emotionId: 1,
     content: '1번 일기 내용',
   },
   {
     id: 2,
-    createDate: new Date('2024-06-22').getTime(),
+    createdDate: new Date('2024-06-22').getTime(),
     emotionId: 2,
     content: '2번 일기 내용',
   },
   {
     id: 3,
-    createDate: new Date('2024-05-05').getTime(),
+    createdDate: new Date('2024-05-05').getTime(),
     emotionId: 3,
     content: '3번 일기 내용',
   },
