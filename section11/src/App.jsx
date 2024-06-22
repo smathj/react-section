@@ -57,7 +57,7 @@ function App(callback, deps) {
   // App 컴포넌트가 랜더링 될떄마다 생성됨
   const onCreate = useCallback((content) => {
 
-    dispatch({
+    let action = {
       type: 'CREATE',
       data: {
         id: idRef.current++,
@@ -65,7 +65,8 @@ function App(callback, deps) {
         content: content,
         date: new Date().getTime(),
       },
-    })
+    }
+    dispatch(action)
   }, [])
 
   // App 컴포넌트가 랜더링 될떄마다 생성됨
