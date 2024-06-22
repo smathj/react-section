@@ -4,6 +4,9 @@ import Home from './pages/Home.jsx'
 import New from './pages/New.jsx'
 import Diary from './pages/Diary.jsx'
 import Notfound from './pages/Notfound.jsx'
+import { getEmotionImage } from './utils/get-emotion-image.js'
+import Button from './components/Button.jsx'
+
 
 function App() {
 
@@ -19,6 +22,15 @@ function App() {
   // 3. "/diary" : 일기를 상세히 조회하는 Diary 페이지
   return (
     <>
+      <Button />
+      <div>
+        <img src={getEmotionImage(1)} />
+        <img src={getEmotionImage(2)} />
+        <img src={getEmotionImage(3)} />
+        <img src={getEmotionImage(4)} />
+        <img src={getEmotionImage(5)} />
+      </div>
+
       {/*! 이 부분은 모든 페이지에 랜더링된다*/}
       {/*! 공통 요소는 여기에 사용할 수 있겠지 */}
       <div>
@@ -32,7 +44,7 @@ function App() {
         {/* Routes 컴포넌트 안에는 Route 컴포넌트만 사용할 수 있다 */}
         <Route path={'/'} element={<Home />}></Route>
         <Route path={'/new'} element={<New />}></Route>
-        <Route path={'/diary'} element={<Diary />}></Route>
+        <Route path={'/diary/:id'} element={<Diary />}></Route>
         <Route path={'*'} element={<Notfound />}></Route> {/*! switch 의 default 와 비슷함 */}
       </Routes>
     </>

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "NanumPenScript";
+    src: url("/NanumPenScript-Regular.ttf");
+}
+
+html, body {
+    margin: 0px;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+}
+
+#root {
+    background-color: white;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto; /*자주쓰는 가운데 정렬*/
+    min-height: 100vh; /*현재 브라우저 스크린 높이*/
+
+    /* <color> | <offset-x> | <offset-y> | <blur-radius> | <spread-radius> */
+    box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+}
+
+body * {
+    font-family: "NanumPenScript";
+}
