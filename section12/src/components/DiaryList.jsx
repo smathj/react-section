@@ -8,6 +8,7 @@ const DiaryList = ({ data }) => {
 
   const nav = useNavigate()
 
+  // 리랜더링을 위한 state
   const [sortType, setSortType] = useState('latest')
 
   const onChangeSortType = (e) => {

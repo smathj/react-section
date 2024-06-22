@@ -5,6 +5,9 @@ import { useContext, useState } from 'react'
 import { DiaryStateContext } from '../App.jsx'
 
 
+/**
+ * 컴포넌트 외부에서 함수 정의
+ */
 const getMonthlyData = (pivotDate, data) => {
 
   // 해당 월의 시작일 : 1일 0시 0분 0초 => 타임 스탬프
